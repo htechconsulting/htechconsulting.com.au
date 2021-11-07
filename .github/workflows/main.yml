@@ -3,6 +3,7 @@ name: Blob storage website CI
 on:
     push:
         branches: [ main ]
+        tags: release
 
 jobs:
   build:
@@ -19,12 +20,12 @@ jobs:
         azcliversion: 2.0.72
         inlineScript: |
             az storage blob upload-batch --account-name htechaueprodweb --auth-mode key -d '$web' -s .
-    #- name: Purge CDN endpoint
-    #  uses: azure/CLI@v1
-    #  with:
-    #    azcliversion: 2.0.72
-    #    inlineScript: |
-    #       az cdn endpoint purge --content-paths  "/*" --profile-name "CDN_PROFILE_NAME" --name "CDN_ENDPOINT" --resource-group "RESOURCE_GROUP"
+    - name: Purge CDN endpoint
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+           az cdn endpoint purge --content-paths  "/*" --profile-name "CDN_PROFILE_NAME" --name "CDN_ENDPOINT" --resource-group "RESOURCE_GROUP"
 
   # Azure logout
     - name: logout
