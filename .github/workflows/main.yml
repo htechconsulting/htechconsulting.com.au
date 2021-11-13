@@ -10,6 +10,7 @@ jobs:
     - uses: azure/login@v1
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          subsription-id: ${{ secrets.AZURE_SUBSCRIPTION }}
 
     - name: Upload to blob storage
       uses: azure/CLI@v1
