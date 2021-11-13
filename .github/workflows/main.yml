@@ -10,18 +10,12 @@ jobs:
     - uses: azure/login@v1
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Set Account
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.0.72
-        inlineScript: |
-            az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION }}
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            az storage blob upload-batch --account-name htechaueprodweb --auth-mode key -d '$web' -s .
+            az storage blob upload-batch --account-name htechaueprodweb --subscription ${{ secrets.AZURE_SUBSCRIPTION }} --auth-mode key -d '$web' -s .
     - name: Purge CDN endpoint
       uses: azure/CLI@v1
       with:
