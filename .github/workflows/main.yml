@@ -16,7 +16,7 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            az storage blob upload-batch --account-name htechaueprodweb --auth-mode key -d '$web' -s ${{ secrets.AZURE_SUBSCRIPTION }}
+            az storage blob upload-batch --account-name htechaueprodweb --auth-mode key -d '$web' -s . -subscription ${{ secrets.AZURE_SUBSCRIPTION }}
     - name: Purge CDN endpoint
       uses: azure/CLI@v1
       with:
