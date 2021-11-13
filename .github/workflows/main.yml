@@ -15,7 +15,7 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            az azzount set --subscription ${{ secrets.AZURE_SUBSCRIPTION }}
+            az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION }}
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
